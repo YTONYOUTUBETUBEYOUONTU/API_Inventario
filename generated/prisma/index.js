@@ -153,7 +153,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\Tareas\\Desktop\\PROYECTO-SISTEMA-INV\\mi-api-nube\\generated\\prisma",
+      "value": "C:\\Users\\Tareas\\Desktop\\Proyecto_Inventario\\API_Inventario\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -164,10 +164,14 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\Tareas\\Desktop\\PROYECTO-SISTEMA-INV\\mi-api-nube\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\Tareas\\Desktop\\Proyecto_Inventario\\API_Inventario\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -190,8 +194,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Activo {\n  id            Int      @id @default(autoincrement())\n  numeroSerie   String   @unique\n  numeroEquipo  Int\n  descripcion   String\n  status        String\n  fechaRegistro DateTime @default(now())\n\n  localizacionId Int\n  tipoActivoId   Int\n  usuarioId      Int\n  categoriaId    Int\n\n  localizacion Localizacion @relation(fields: [localizacionId], references: [id])\n  tipoActivo   TipoActivo   @relation(fields: [tipoActivoId], references: [id])\n  usuario      Usuario      @relation(fields: [usuarioId], references: [id])\n  categoria    Categoria    @relation(fields: [categoriaId], references: [id])\n}\n\nmodel Usuario {\n  id      Int      @id @default(autoincrement())\n  name    String\n  email   String   @unique\n  activos Activo[]\n}\n\nmodel TipoActivo {\n  id      Int      @id @default(autoincrement())\n  nombre  String\n  activos Activo[]\n}\n\nmodel Localizacion {\n  id      Int      @id @default(autoincrement())\n  nombre  String\n  activos Activo[]\n}\n\nmodel Categoria {\n  id      Int      @id @default(autoincrement())\n  nombre  String\n  activos Activo[]\n}\n",
-  "inlineSchemaHash": "4cf97f8b0e6ceb2269acf172ca050bc33da02f8d93580c535dd1b52fc01d9e9b",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../generated/prisma\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Activo {\n  id            Int      @id @default(autoincrement())\n  numeroSerie   String   @unique\n  numeroEquipo  Int\n  descripcion   String\n  status        String\n  fechaRegistro DateTime @default(now())\n\n  localizacionId Int\n  tipoActivoId   Int\n  usuarioId      Int\n  categoriaId    Int\n\n  localizacion Localizacion @relation(fields: [localizacionId], references: [id])\n  tipoActivo   TipoActivo   @relation(fields: [tipoActivoId], references: [id])\n  usuario      Usuario      @relation(fields: [usuarioId], references: [id])\n  categoria    Categoria    @relation(fields: [categoriaId], references: [id])\n}\n\nmodel Usuario {\n  id      Int      @id @default(autoincrement())\n  name    String\n  email   String   @unique\n  activos Activo[]\n}\n\nmodel TipoActivo {\n  id      Int      @id @default(autoincrement())\n  nombre  String\n  activos Activo[]\n}\n\nmodel Localizacion {\n  id      Int      @id @default(autoincrement())\n  nombre  String\n  activos Activo[]\n}\n\nmodel Categoria {\n  id      Int      @id @default(autoincrement())\n  nombre  String\n  activos Activo[]\n}\n",
+  "inlineSchemaHash": "b03a08f7b48025eae426db9ed7138f0ee9e56c8953fe190d8af1864cdf6e7038",
   "copyEngine": true
 }
 
@@ -232,6 +236,10 @@ Object.assign(exports, Prisma)
 // file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
 path.join(process.cwd(), "generated/prisma/query_engine-windows.dll.node")
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
+path.join(process.cwd(), "generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "generated/prisma/schema.prisma")
